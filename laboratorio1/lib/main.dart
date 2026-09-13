@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+class Alumno {
+  final String nombre;
+  final string carnet;
+  bool estaPresente;
+
+  Alumno(
+    required this.nombre,
+    required this.carnet,
+    required this.estaPresente,
+  )
+}
+
 void main() {
   runApp(const MyApp());
 }
