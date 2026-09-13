@@ -21,17 +21,31 @@ class ListaAlumnosScreen extends StatefulWidget {
 
 class _ListaAlumnosScreenState extends State<ListaAlumnosScreen> {
   List<Alumno> alumnos = [
-    Alumno(nombre: 'Juan Perez', carnet: '2021001', estaPresente: false),
-    Alumno(nombre: 'Maria Lopez', carnet: '2021002', estaPresente: false),
-    Alumno(nombre: 'Carlos Ramirez', carnet: '2021003', estaPresente: false),
+    Alumno(nombre: 'Juan Perez', carnet: '20210001', estaPresente: false),
+    Alumno(nombre: 'Maria Lopez', carnet: '20210002', estaPresente: false),
+    Alumno(nombre: 'Carlos Ramirez', carnet: '20210003', estaPresente: false),
+    Alumno(nombre: 'Alvaro Días', carnet: '20212003', estaPresente: false),
+    Alumno(
+      nombre: 'Maria la del barrio',
+      carnet: '20240052',
+      estaPresente: false,
+    ),
+    Alumno(nombre: 'Fin el humando', carnet: '20240003', estaPresente: false),
+    Alumno(nombre: 'Jake el Perro', carnet: '20240201', estaPresente: false),
+    Alumno(nombre: 'Felix Ave', carnet: '20220002', estaPresente: false),
+    Alumno(nombre: 'Antonio Molina', carnet: '20210034', estaPresente: false),
+    Alumno(nombre: 'Mision Posible', carnet: '20200102', estaPresente: false),
+    Alumno(nombre: 'Andre Chavez', carnet: '20190003', estaPresente: false),
+    Alumno(nombre: 'Paco PocaSangre', carnet: '20211201', estaPresente: false),
+    Alumno(nombre: 'Maria Antonieta', carnet: '20222202', estaPresente: false),
+    Alumno(nombre: 'Pablo Escobar', carnet: '20211903', estaPresente: false),
+    Alumno(nombre: 'Escubi Duh', carnet: '20251923', estaPresente: false),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Lista de Alumnos'),
-      ),
+      appBar: AppBar(title: Text('Lista de Alumnos')),
       body: ListView.builder(
         itemCount: alumnos.length,
         itemBuilder: (context, index) {
@@ -39,6 +53,7 @@ class _ListaAlumnosScreenState extends State<ListaAlumnosScreen> {
           return ListTile(
             title: Text(alumno.nombre),
             subtitle: Text('Carnet: ${alumno.carnet}'),
+
             trailing: Checkbox(
               value: alumno.estaPresente,
               onChanged: (value) {
@@ -49,6 +64,20 @@ class _ListaAlumnosScreenState extends State<ListaAlumnosScreen> {
             ),
           );
         },
+        padding: const EdgeInsets.only(bottom: 78),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          for (final alumno in alumnos) {
+            if (!alumno.estaPresente) {
+              setState(() {
+                alumno.estaPresente = true;
+              });
+            }
+          }
+        },
+        icon: Icon(Icons.check),
+        label: Text('Marcar todos como presentes'),
       ),
     );
   }
@@ -86,7 +115,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const ListaAlumnosScreen(),//MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const ListaAlumnosScreen(), //MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
