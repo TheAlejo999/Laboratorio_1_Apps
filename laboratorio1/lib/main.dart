@@ -39,13 +39,14 @@ class MyApp extends StatelessWidget {
 class Alumno {
   final String nombre;
   final String carnet;
+  final bool estadoInicial;
   bool estaPresente;
 
   Alumno({
     required this.nombre,
     required this.carnet,
-    required this.estaPresente,
-  });
+    required this.estadoInicial,
+  }) : estaPresente = estadoInicial;
 }
 
 class ListaAlumnosScreen extends StatefulWidget {
@@ -57,21 +58,21 @@ class ListaAlumnosScreen extends StatefulWidget {
 
 class _ListaAlumnosScreenState extends State<ListaAlumnosScreen> {
   List<Alumno> alumnos = [
-    Alumno(nombre: 'Juan Perez', carnet: '20210001', estaPresente: false),
-    Alumno(nombre: 'Maria Lopez', carnet: '20210002', estaPresente: false),
-    Alumno(nombre: 'Carlos Ramirez', carnet: '20210003', estaPresente: false),
-    Alumno(nombre: 'Alvaro Días', carnet: '20212003', estaPresente: false),
-    Alumno(nombre: 'Maria la del barrio',carnet: '20240052', estaPresente: false),
-    Alumno(nombre: 'Fin el humando', carnet: '20240003', estaPresente: false),
-    Alumno(nombre: 'Jake el Perro', carnet: '20240201', estaPresente: false),
-    Alumno(nombre: 'Felix Ave', carnet: '20220002', estaPresente: false),
-    Alumno(nombre: 'Antonio Molina', carnet: '20210034', estaPresente: false),
-    Alumno(nombre: 'Mision Posible', carnet: '20200102', estaPresente: false),
-    Alumno(nombre: 'Andre Chavez', carnet: '20190003', estaPresente: false),
-    Alumno(nombre: 'Paco PocaSangre', carnet: '20211201', estaPresente: false),
-    Alumno(nombre: 'Maria Antonieta', carnet: '20222202', estaPresente: false),
-    Alumno(nombre: 'Pablo Escobar', carnet: '20211903', estaPresente: false),
-    Alumno(nombre: 'Escubi Duh', carnet: '20251923', estaPresente: false),
+    Alumno(nombre: 'Juan Perez', carnet: '20210001', estadoInicial: true),
+    Alumno(nombre: 'Maria Lopez', carnet: '20210002', estadoInicial: false),
+    Alumno(nombre: 'Carlos Ramirez', carnet: '20210003', estadoInicial: false),
+    Alumno(nombre: 'Alvaro Días', carnet: '20212003', estadoInicial: false),
+    Alumno(nombre: 'Maria la del barrio',carnet: '20240052', estadoInicial: true),
+    Alumno(nombre: 'Fin el humando', carnet: '20240003', estadoInicial: false),
+    Alumno(nombre: 'Jake el Perro', carnet: '20240201', estadoInicial: false),
+    Alumno(nombre: 'Felix Ave', carnet: '20220002', estadoInicial: false),
+    Alumno(nombre: 'Antonio Molina', carnet: '20210034', estadoInicial: false),
+    Alumno(nombre: 'Mision Posible', carnet: '20200102', estadoInicial: false),
+    Alumno(nombre: 'Andre Chavez', carnet: '20190003', estadoInicial: false),
+    Alumno(nombre: 'Paco PocaSangre', carnet: '20211201', estadoInicial: false),
+    Alumno(nombre: 'Maria Antonieta', carnet: '20222202', estadoInicial: true),
+    Alumno(nombre: 'Pablo Escobar', carnet: '20211903', estadoInicial: false),
+    Alumno(nombre: 'Escubi Duh', carnet: '20251923', estadoInicial: false),
   ];
 
   @override
@@ -125,7 +126,7 @@ class _ListaAlumnosScreenState extends State<ListaAlumnosScreen> {
               onPressed: () {
                 setState(() {
                   for (final alumno in alumnos) {
-                      alumno.estaPresente = false;
+                      alumno.estaPresente = alumno.estadoInicial;
                   }
                 });
               },
