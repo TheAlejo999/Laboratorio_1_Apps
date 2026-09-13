@@ -2,15 +2,59 @@ import 'package:flutter/material.dart';
 
 class Alumno {
   final String nombre;
-  final string carnet;
+  final String carnet;
   bool estaPresente;
 
-  Alumno(
+  Alumno({
     required this.nombre,
     required this.carnet,
     required this.estaPresente,
-  )
+  });
 }
+
+class ListaAlumnosScreen extends StatefulWidget {
+  const ListaAlumnosScreen({super.key});
+
+  @override
+  State<ListaAlumnosScreen> createState() => _ListaAlumnosScreenState();
+}
+
+class _ListaAlumnosScreenState extends State<ListaAlumnosScreen> {
+  List<Alumno> alumnos = [
+    Alumno(nombre: 'Juan Perez', carnet: '2021001', estaPresente: false),
+    Alumno(nombre: 'Maria Lopez', carnet: '2021002', estaPresente: false),
+    Alumno(nombre: 'Carlos Ramirez', carnet: '2021003', estaPresente: false),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Lista de Alumnos'),
+      ),
+      body: ListView.builder(
+        itemCount: alumnos.length,
+        itemBuilder: (context, index) {
+          final alumno = alumnos[index];
+          return ListTile(
+            title: Text(alumno.nombre),
+            subtitle: Text('Carnet: ${alumno.carnet}'),
+            trailing: Checkbox(
+              value: alumno.estaPresente,
+              onChanged: (value) {
+                setState(() {
+                  alumno.estaPresente = value ?? false;
+                });
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+// El Main desde aqui
 
 void main() {
   runApp(const MyApp());
@@ -42,7 +86,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const ListaAlumnosScreen(),//MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
