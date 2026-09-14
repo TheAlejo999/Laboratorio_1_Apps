@@ -32,17 +32,13 @@ class Alumno {
 }
 
 // Datos de los alumnos
-List<Alumno> alumnos = [
+final List<Alumno> alumnos = [
   Alumno(nombre: 'Juan Perez', carnet: '20210001', estadoInicial: false),
   Alumno(nombre: 'Maria Lopez', carnet: '20210002', estadoInicial: false),
   Alumno(nombre: 'Carlos Ramirez', carnet: '20210003', estadoInicial: false),
   Alumno(nombre: 'Alvaro Días', carnet: '20212003', estadoInicial: false),
-  Alumno(
-    nombre: 'Maria la del barrio',
-    carnet: '20240052',
-    estadoInicial: false,
-  ),
-  Alumno(nombre: 'Fin el humando', carnet: '20240003', estadoInicial: false),
+  Alumno(nombre: 'Maria la del barrio', carnet: '20240052', estadoInicial: false),
+  Alumno(nombre: 'Ronald Weasley', carnet: '20240003', estadoInicial: false),
   Alumno(nombre: 'Jake el Perro', carnet: '20240201', estadoInicial: false),
   Alumno(nombre: 'Felix Ave', carnet: '20220002', estadoInicial: false),
   Alumno(nombre: 'Antonio Molina', carnet: '20210034', estadoInicial: false),
@@ -51,7 +47,7 @@ List<Alumno> alumnos = [
   Alumno(nombre: 'Paco PocaSangre', carnet: '20211201', estadoInicial: false),
   Alumno(nombre: 'Maria Antonieta', carnet: '20222202', estadoInicial: false),
   Alumno(nombre: 'Pablo Escobar', carnet: '20211903', estadoInicial: false),
-  Alumno(nombre: 'Escubi Duh', carnet: '20251923', estadoInicial: false),
+  Alumno(nombre: 'Harry Potter', carnet: '20251923', estadoInicial: false),
 ];
 
 // Widget independiente para cada alumno
@@ -135,10 +131,9 @@ class _ListaAlumnosScreenState extends State<ListaAlumnosScreen> {
       ),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          SizedBox(
-            width: 300,
-            child: FloatingActionButton.extended(
+            FloatingActionButton.extended(
               onPressed: () {
                 setState(() {
                   for (final alumno in alumnos) {
@@ -148,15 +143,13 @@ class _ListaAlumnosScreenState extends State<ListaAlumnosScreen> {
                   }
                 });
               },
-              icon: const Icon(Icons.check),
-              label: const Text('Marcar a todo el grupo como presente'),
+              icon: const Icon(Icons.check, size: 18),
+              label: const Text('Marcar a todos'),
             ),
-          ),
 
           const SizedBox(height: 10),
-          SizedBox(
-            width: 300,
-            child: FloatingActionButton.extended(
+
+            FloatingActionButton.extended(
               onPressed: () {
                 setState(() {
                   for (final alumno in alumnos) {
@@ -164,10 +157,9 @@ class _ListaAlumnosScreenState extends State<ListaAlumnosScreen> {
                   }
                 });
               },
-              icon: const Icon(Icons.refresh),
-              label: const Text('Restablecer todos los registros'),
+              icon: const Icon(Icons.refresh, size: 18),
+              label: const Text('Restablecer'),
             ),
-          ),
         ],
       ),
     );
